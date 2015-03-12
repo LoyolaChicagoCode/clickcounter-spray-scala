@@ -1,8 +1,8 @@
 package edu.luc.etl.cs313.scala.clickcounter.service
 package repository
 
-import scala.concurrent.Future
 import scala.collection.mutable.Map
+import scala.concurrent.Future
 import scala.util.{Failure, Success, Try}
 import common.Repository
 import model.Counter
