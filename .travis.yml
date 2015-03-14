@@ -3,7 +3,7 @@ scala: 2.11.4
 env:
   global:
   - PKG=edu.luc.etl.cs313.scala.clickcounter.service
-script: sbt coverage "testOnly $PKG.api.ConcreteApiSpec $PKG.api.HerokuHttpSpec $PKG.api.ApiaryHttpSpec $PKG.model.CounterSpec $PKG.repository.InMemoryRepositorySpec $PKG.ActorInMemoryRepositorySpec"
+script: sbt coverage "testOnly $PKG.api.ConcreteApiSpec $PKG.api.HerokuHttpSpec $PKG.api.ApiaryHttpSpec $PKG.model.CounterSpec $PKG.repository.InMemoryRepositorySpec $PKG.repository.ActorInMemoryRepositorySpec"
 after_success: sbt coveralls
 deploy:
   provider: heroku
