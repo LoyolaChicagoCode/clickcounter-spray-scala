@@ -1,6 +1,9 @@
 language: scala
 scala: 2.11.4
-script: sbt coverage "testOnly edu.luc.etl.cs313.scala.clickcounter.service.api.ConcreteApiSpec edu.luc.etl.cs313.scala.clickcounter.service.api.HerokuHttpSpec edu.luc.etl.cs313.scala.clickcounter.service.api.ApiaryHttpSpec edu.luc.etl.cs313.scala.clickcounter.service.model.CounterSpec edu.luc.etl.cs313.scala.clickcounter.service.repository.InMemoryRepositorySpec"
+env:
+  global:
+  - PKG=edu.luc.etl.cs313.scala.clickcounter.service
+script: sbt coverage "testOnly $PKG.api.ConcreteApiSpec $PKG.api.HerokuHttpSpec $PKG.api.ApiaryHttpSpec $PKG.model.CounterSpec $PKG.repository.InMemoryRepositorySpec $PKG.ActorInMemoryRepositorySpec"
 after_success: sbt coveralls
 deploy:
   provider: heroku
