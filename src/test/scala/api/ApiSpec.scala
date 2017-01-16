@@ -46,9 +46,9 @@ trait ApiSpec extends Specification with Specs2RouteTest with JsonMatchers with 
       Get("/counters/" + id) ~> myRoute ~> check {
         status === OK
         val counter = responseAs[String]
-        counter must / ("min" -> beEqualToDouble(cMin))
-        counter must / ("value" -> beEqualToDouble(cMin))
-        counter must / ("max" -> beEqualToDouble(cMax))
+        counter must /("min" -> beEqualToDouble(cMin))
+        counter must /("value" -> beEqualToDouble(cMin))
+        counter must /("max" -> beEqualToDouble(cMax))
       }
     }
 
@@ -80,9 +80,9 @@ trait ApiSpec extends Specification with Specs2RouteTest with JsonMatchers with 
       Get("/counters/" + id) ~> myRoute ~> check {
         status === OK
         val counter = responseAs[String]
-        counter must / ("min" -> beEqualToDouble(cMin))
-        counter must / ("value" -> beEqualToDouble(cMin + 1))
-        counter must / ("max" -> beEqualToDouble(cMax))
+        counter must /("min" -> beEqualToDouble(cMin))
+        counter must /("value" -> beEqualToDouble(cMin + 1))
+        counter must /("max" -> beEqualToDouble(cMax))
       }
     }
 
@@ -93,9 +93,9 @@ trait ApiSpec extends Specification with Specs2RouteTest with JsonMatchers with 
       Get("/counters/" + id) ~> myRoute ~> check {
         status === OK
         val counter = responseAs[String]
-        counter must / ("min" -> beEqualToDouble(cMin))
-        counter must / ("value" -> beEqualToDouble(cMin))
-        counter must / ("max" -> beEqualToDouble(cMax))
+        counter must /("min" -> beEqualToDouble(cMin))
+        counter must /("value" -> beEqualToDouble(cMin))
+        counter must /("max" -> beEqualToDouble(cMax))
       }
     }
 

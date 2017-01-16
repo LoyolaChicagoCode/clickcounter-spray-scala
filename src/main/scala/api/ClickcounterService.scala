@@ -8,7 +8,7 @@ import spray.httpx.SprayJsonSupport
 import spray.json._
 import spray.routing._
 import spray.routing.directives.OnCompleteFutureMagnet
-import scala.util.{Success, Try}
+import scala.util.{ Success, Try }
 import model.Counter
 import common._
 import repository.RedisRepositoryProvider
@@ -63,67 +63,67 @@ trait ClickcounterService extends HttpService with SprayJsonSupport with Default
         }
       }
     } ~
-    path("counters") {
-      get {
-        onSuccess(repository.keys) { complete(_) }
-      }
-    } ~
-    pathPrefix("counters" / Segment) { id =>
-      pathEnd {
-        put {
-          requestUri { uri =>
-            def createIt(counter: Counter) =
-              onCompleteWithRepoErrorHandler(repository.set(id, counter)) {
-                case Success(true) =>
-                  val loc = uri.copy(query = Uri.Query.Empty)
-                  complete(StatusCodes.Created, HttpHeaders.Location(loc) :: Nil, "")
-              }
-            parameters('min.as[Int], 'max.as[Int]) { (min, max) =>
-              createIt(Counter(min, min, max))
-            } ~
-            entity(as[Counter]) {
-              createIt
-            }
-          }
-        } ~
-        delete {
-          onCompleteWithRepoErrorHandler(repository.del(id)) {
-            case Success(1) => complete(StatusCodes.NoContent)
-          }
-        } ~
+      path("counters") {
         get {
-          onCompleteWithRepoErrorHandler(repository.get(id)) {
-            case Success(Some(c @ Counter(min, value, max))) => complete(c)
-          }
+          onSuccess(repository.keys) { complete(_) }
         }
-      } ~ {
-        def updateIt(f: Counter => Int, errorMsg: String) =
-          onCompleteWithRepoErrorHandler(repository.update(id, f)) {
-            case Success(Some(true)) => complete(StatusCodes.NoContent)
-            case Success(Some(false)) => complete(StatusCodes.Conflict, errorMsg)
-          }
-        path("increment") {
-          post {
-            updateIt(_.value + 1, "counter at max, cannot increment")
-          }
-        } ~
-        path("decrement") {
-          post {
-            updateIt(_.value - 1, "counter at min, cannot decrement")
-          }
-        } ~
-        path("reset") {
-          post {
-            updateIt(_.min, "counter at min, cannot decrement")
-          }
-        } ~
-        path("stream") {
-          get {
-            sendStreamingResponse(id)
-          }
+      } ~
+      pathPrefix("counters" / Segment) { id =>
+        pathEnd {
+          put {
+            requestUri { uri =>
+              def createIt(counter: Counter) =
+                onCompleteWithRepoErrorHandler(repository.set(id, counter)) {
+                  case Success(true) =>
+                    val loc = uri.copy(query = Uri.Query.Empty)
+                    complete(StatusCodes.Created, HttpHeaders.Location(loc) :: Nil, "")
+                }
+              parameters('min.as[Int], 'max.as[Int]) { (min, max) =>
+                createIt(Counter(min, min, max))
+              } ~
+                entity(as[Counter]) {
+                  createIt
+                }
+            }
+          } ~
+            delete {
+              onCompleteWithRepoErrorHandler(repository.del(id)) {
+                case Success(1) => complete(StatusCodes.NoContent)
+              }
+            } ~
+            get {
+              onCompleteWithRepoErrorHandler(repository.get(id)) {
+                case Success(Some(c @ Counter(min, value, max))) => complete(c)
+              }
+            }
+        } ~ {
+          def updateIt(f: Counter => Int, errorMsg: String) =
+            onCompleteWithRepoErrorHandler(repository.update(id, f)) {
+              case Success(Some(true)) => complete(StatusCodes.NoContent)
+              case Success(Some(false)) => complete(StatusCodes.Conflict, errorMsg)
+            }
+          path("increment") {
+            post {
+              updateIt(_.value + 1, "counter at max, cannot increment")
+            }
+          } ~
+            path("decrement") {
+              post {
+                updateIt(_.value - 1, "counter at min, cannot decrement")
+              }
+            } ~
+            path("reset") {
+              post {
+                updateIt(_.min, "counter at min, cannot decrement")
+              }
+            } ~
+            path("stream") {
+              get {
+                sendStreamingResponse(id)
+              }
+            }
         }
       }
-    }
 
   def sendStreamingResponse(id: String)(ctx: RequestContext): Unit = {
     def toEvent(c: Counter): String =

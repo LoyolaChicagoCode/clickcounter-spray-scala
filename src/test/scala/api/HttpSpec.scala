@@ -53,9 +53,9 @@ trait HttpSpec extends Specification with JsonMatchers {
       val request = serviceRoot / "counters" / id
       val response = Http(request OK as.String)
       val counter = response()
-      counter must / ("min" -> beEqualToDouble(cMin))
-      counter must / ("value" -> beEqualToDouble(cMin))
-      counter must / ("max" -> beEqualToDouble(cMax))
+      counter must /("min" -> beEqualToDouble(cMin))
+      counter must /("value" -> beEqualToDouble(cMin))
+      counter must /("max" -> beEqualToDouble(cMax))
     }
 
     "delete an existing counter" in {
@@ -87,9 +87,9 @@ trait HttpSpec extends Specification with JsonMatchers {
       val request2 = serviceRoot / "counters" / id
       val response2 = Http(request2 OK as.String)
       val counter = response2()
-      counter must / ("min" -> beEqualToDouble(cMin))
-      counter must / ("value" -> beEqualToDouble(cMin))
-      counter must / ("max" -> beEqualToDouble(cMax))
+      counter must /("min" -> beEqualToDouble(cMin))
+      counter must /("value" -> beEqualToDouble(cMin))
+      counter must /("max" -> beEqualToDouble(cMax))
     }
 
     "retrieve a counter value stream" in {

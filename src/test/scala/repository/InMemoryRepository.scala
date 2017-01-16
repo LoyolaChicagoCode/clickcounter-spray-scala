@@ -3,7 +3,7 @@ package repository
 
 import scala.collection.mutable.Map
 import scala.concurrent.Future
-import scala.util.{Failure, Success, Try}
+import scala.util.{ Failure, Success, Try }
 import common.Repository
 import model.Counter
 
@@ -19,11 +19,11 @@ class InMemoryRepository extends Repository {
 
   override def keys: Future[Set[String]] = synchronized { Future.successful(data.keys.toSet) }
 
-  override def set(id: String, counter: Counter) = synchronized { data.put(id, counter) ; Future.successful(true) }
+  override def set(id: String, counter: Counter) = synchronized { data.put(id, counter); Future.successful(true) }
 
   override def get(id: String) = synchronized { Future.successful(data.get(id)) }
 
-  override def del(id: String) = synchronized { data.remove(id) ; Future.successful(1) }
+  override def del(id: String) = synchronized { data.remove(id); Future.successful(1) }
 
   override def update(id: String, f: Counter => Int) = synchronized {
     data.get(id) match {

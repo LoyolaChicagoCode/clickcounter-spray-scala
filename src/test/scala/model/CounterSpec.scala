@@ -10,22 +10,22 @@ class CounterSpec extends Specification with JsonMatchers {
 
     "allow the creation of a valid counter" in {
       val Counter(min, value, max) = Counter(0, 0, 5)
-      (min, value, max) must beEqualTo (0, 0, 5)
+      (min, value, max) must beEqualTo(0, 0, 5)
     }
 
     "allow the creation of a valid counter" in {
       val Counter(min, value, max) = Counter(0, 5, 5)
-      (min, value, max) must beEqualTo (0, 5, 5)
+      (min, value, max) must beEqualTo(0, 5, 5)
     }
 
     "allow the creation of a valid counter" in {
       val Counter(min, value, max) = Counter(0, 1, 5)
-      (min, value, max) must beEqualTo (0, 1, 5)
+      (min, value, max) must beEqualTo(0, 1, 5)
     }
 
     "allow the creation of a valid counter" in {
       val Counter(min, value, max) = Counter(0, 0, 1)
-      (min, value, max) must beEqualTo (0, 0, 1)
+      (min, value, max) must beEqualTo(0, 0, 1)
     }
 
     "require min < max" in {
@@ -53,9 +53,9 @@ class CounterSpec extends Specification with JsonMatchers {
     "write a counter to JSON" in {
       val c = Counter(1, 2, 3)
       val j = c.toJson.toString
-      j must / ("min" -> beEqualToDouble(1))
-      j must / ("value" -> beEqualToDouble(2))
-      j must / ("max" -> beEqualToDouble(3))
+      j must /("min" -> beEqualToDouble(1))
+      j must /("value" -> beEqualToDouble(2))
+      j must /("max" -> beEqualToDouble(3))
     }
 
     "read a counter from JSON" in {

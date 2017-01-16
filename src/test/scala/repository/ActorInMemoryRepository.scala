@@ -1,13 +1,13 @@
 package edu.luc.etl.cs313.scala.clickcounter.service
 package repository
 
-import akka.actor.{Props, ActorSystem, Actor}
+import akka.actor.{ Props, ActorSystem, Actor }
 import akka.pattern.ask
 import akka.util.Timeout
 import scala.concurrent.duration._
 import scala.collection.mutable.Map
 import scala.concurrent.Future
-import scala.util.{Failure, Success, Try}
+import scala.util.{ Failure, Success, Try }
 import common.Repository
 import model.Counter
 
@@ -46,12 +46,14 @@ class RepositoryActor extends Actor {
 
   def receive = {
     case KEYS => sender() ! data.keys.toSet
-    case SET(id, counter) => data.put(id, counter); sender() ! true
+    case SET(id, counter) =>
+      data.put(id, counter); sender() ! true
     case GET(id) => sender() ! data.get(id)
-    case DEL(id) => data.remove(id); sender() ! 1L
+    case DEL(id) =>
+      data.remove(id); sender() ! 1L
     case UPDATE(id, f) => sender() !
       (data.get(id) match {
-        case Some(c@Counter(min, value, max)) =>
+        case Some(c @ Counter(min, value, max)) =>
           // found item, attempt update
           Try(Counter(min, f(c), max)) match {
             case Success(newCounter) =>

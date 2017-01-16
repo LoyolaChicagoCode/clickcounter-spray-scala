@@ -4,10 +4,10 @@ package repository
 import java.net.URI
 import akka.actor.ActorSystem
 import scredis._
-import scredis.serialization.{Reader, Writer}
+import scredis.serialization.{ Reader, Writer }
 import spray.json._
 import scala.concurrent.Future
-import scala.util.{Failure, Properties, Success, Try}
+import scala.util.{ Failure, Properties, Success, Try }
 import model.Counter
 import common._
 
@@ -49,8 +49,7 @@ trait RedisRepositoryProvider {
     implicit val actorSystem = ActorSystem("redis-pubsub")
 
     override def keys =
-      for { result <- redis.keys(toKey("*")) } yield
-        for { s <- result } yield s.split(':')(1)
+      for { result <- redis.keys(toKey("*")) } yield for { s <- result } yield s.split(':')(1)
 
     override def set(id: String, counter: Counter) = {
       val key = toKey(id)
@@ -76,7 +75,7 @@ trait RedisRepositoryProvider {
       redis.watch(key) flatMap { _ =>
         // lock key optimistically
         redis.get[Counter](key) flatMap {
-          case Some(c@Counter(min, value, max)) =>
+          case Some(c @ Counter(min, value, max)) =>
             // found item, attempt update
             Try(Counter(min, f(c), max)) match {
               case Success(newCounter) =>
