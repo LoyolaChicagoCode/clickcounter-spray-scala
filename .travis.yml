@@ -1,10 +1,10 @@
 language: scala
-scala: 2.11.4
+scala: 2.11.8
 env:
   global:
   - PKG=edu.luc.etl.cs313.scala.clickcounter.service
-script: sbt coverage "testOnly $PKG.api.ConcreteApiSpec $PKG.api.HerokuHttpSpec $PKG.api.ApiaryHttpSpec $PKG.model.CounterSpec $PKG.repository.InMemoryRepositorySpec $PKG.repository.ActorInMemoryRepositorySpec"
-after_success: sbt coveralls
+script: sbt coverage "testOnly $PKG.api.ConcreteApiSpec $PKG.api.HerokuHttpSpec $PKG.api.ApiaryHttpSpec $PKG.model.CounterSpec $PKG.repository.InMemoryRepositorySpec $PKG.repository.ActorInMemoryRepositorySpec" test coverageReport
+after_success: bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: heroku
   app: laufer-clickcounter
