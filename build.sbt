@@ -6,8 +6,6 @@ scalaVersion := "2.11.8"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked")
 
-resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases"
-
 libraryDependencies ++= {
   val akkaV = "2.3.16"
   val sprayV = "1.3.4"
