@@ -1,7 +1,7 @@
 package edu.luc.etl.cs313.scala.clickcounter.service
 package api
 
-import akka.actor.{ ActorSystem, Props }
+import akka.actor.{ActorSystem, Props}
 import akka.io.IO
 import akka.pattern.ask
 import akka.util.Timeout

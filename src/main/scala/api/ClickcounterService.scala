@@ -8,7 +8,7 @@ import spray.httpx.SprayJsonSupport
 import spray.json._
 import spray.routing._
 import spray.routing.directives.OnCompleteFutureMagnet
-import scala.util.{ Success, Try }
+import scala.util.{Success, Try}
 import model.Counter
 import common._
 import repository.RedisRepositoryProvider
@@ -43,7 +43,7 @@ trait ClickcounterService extends HttpService with SprayJsonSupport with Default
 
   def repoErrorHandler[T]: PartialFunction[Try[T], Route] = {
     case Success(_) => complete(StatusCodes.NotFound)
-    case _ => complete(StatusCodes.InternalServerError)
+    case _          => complete(StatusCodes.InternalServerError)
   }
 
   def onCompleteWithRepoErrorHandler[T](m: OnCompleteFutureMagnet[T])(body: PartialFunction[Try[T], Route]) =
@@ -99,7 +99,7 @@ trait ClickcounterService extends HttpService with SprayJsonSupport with Default
         } ~ {
           def updateIt(f: Counter => Int, errorMsg: String) =
             onCompleteWithRepoErrorHandler(repository.update(id, f)) {
-              case Success(Some(true)) => complete(StatusCodes.NoContent)
+              case Success(Some(true))  => complete(StatusCodes.NoContent)
               case Success(Some(false)) => complete(StatusCodes.Conflict, errorMsg)
             }
           path("increment") {
