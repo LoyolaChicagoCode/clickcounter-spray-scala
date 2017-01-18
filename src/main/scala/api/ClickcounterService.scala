@@ -8,7 +8,7 @@ import spray.httpx.SprayJsonSupport
 import spray.json._
 import spray.routing._
 import spray.routing.directives.OnCompleteFutureMagnet
-import scala.util.{Success, Try}
+import scala.util.{ Success, Try }
 import model.Counter
 import common._
 import repository.RedisRepositoryProvider

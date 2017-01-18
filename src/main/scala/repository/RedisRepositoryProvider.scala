@@ -4,10 +4,10 @@ package repository
 import java.net.URI
 import akka.actor.ActorSystem
 import scredis._
-import scredis.serialization.{Reader, Writer}
+import scredis.serialization.{ Reader, Writer }
 import spray.json._
 import scala.concurrent.Future
-import scala.util.{Failure, Properties, Success, Try}
+import scala.util.{ Failure, Properties, Success, Try }
 import model.Counter
 import common._
 
