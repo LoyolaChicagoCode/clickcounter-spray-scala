@@ -7,6 +7,7 @@ import akka.util.Timeout
 import scala.concurrent.duration._
 import scala.collection.mutable.Map
 import scala.concurrent.Future
+import scala.language.postfixOps
 import scala.util.{ Failure, Success, Try }
 import common.Repository
 import model.Counter
