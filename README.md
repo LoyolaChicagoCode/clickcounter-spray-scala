@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/LoyolaChicagoCode/clickcounter-spray-scala.svg)](https://travis-ci.org/LoyolaChicagoCode/clickcounter-spray-scala)
 [![codecov](https://codecov.io/gh/LoyolaChicagoCode/clickcounter-spray-scala/branch/master/graph/badge.svg)](https://codecov.io/gh/LoyolaChicagoCode/clickcounter-spray-scala)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1ffc88abb7ea4e768e564abd3fe5b498)](https://www.codacy.com/app/laufer/clickcounter-spray-scala?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LoyolaChicagoCode/clickcounter-spray-scala&amp;utm_campaign=Badge_Grade)
+
 [![Stories in Ready](https://badge.waffle.io/LoyolaChicagoCode/clickcounter-spray-scala.png?label=ready&title=Ready)](http://waffle.io/LoyolaChicagoCode/clickcounter-spray-scala)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/LoyolaChicagoCode/clickcounter-spray-scala.svg)](http://isitmaintained.com/project/LoyolaChicagoCode/clickcounter-spray-scala "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/LoyolaChicagoCode/clickcounter-spray-scala.svg)](http://isitmaintained.com/project/LoyolaChicagoCode/clickcounter-spray-scala "Percentage of issues still open")
