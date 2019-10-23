@@ -8,7 +8,7 @@ import spray.httpx.SprayJsonSupport
 import spray.json._
 import spray.routing._
 import spray.routing.directives.OnCompleteFutureMagnet
-import scala.util.{ Success, Try }
+import scala.util.{Success, Try}
 import model.Counter
 import common._
 import repository.RedisRepositoryProvider
@@ -27,9 +27,9 @@ class ClickcounterServiceActor extends Actor with ClickcounterService with Redis
 }
 
 /**
- * Defines our service behavior independently from the service actor.
- * Defines the `sprayCounterFormat` possibly required by the repository provider.
- */
+  * Defines our service behavior independently from the service actor.
+  * Defines the `sprayCounterFormat` possibly required by the repository provider.
+  */
 trait ClickcounterService extends HttpService with SprayJsonSupport with DefaultJsonProtocol {
 
   /** Execution context required by spray-routing. */

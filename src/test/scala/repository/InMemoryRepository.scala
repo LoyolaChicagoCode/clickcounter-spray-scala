@@ -3,7 +3,7 @@ package repository
 
 import scala.collection.mutable.Map
 import scala.concurrent.Future
-import scala.util.{ Failure, Success, Try }
+import scala.util.{Failure, Success, Try}
 import common.Repository
 import model.Counter
 

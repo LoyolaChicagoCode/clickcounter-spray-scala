@@ -4,7 +4,7 @@ package repository
 import java.util.UUID
 import scala.concurrent.Await
 import scala.concurrent.duration._
-import org.specs2.mutable.{ After, Specification }
+import org.specs2.mutable.{After, Specification}
 import common.Repository
 import model.Counter
 

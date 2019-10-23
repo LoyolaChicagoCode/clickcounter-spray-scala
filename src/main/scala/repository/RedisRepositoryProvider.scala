@@ -4,17 +4,17 @@ package repository
 import java.net.URI
 import akka.actor.ActorSystem
 import scredis._
-import scredis.serialization.{ Reader, Writer }
+import scredis.serialization.{Reader, Writer}
 import spray.json._
 import scala.concurrent.Future
-import scala.util.{ Failure, Properties, Success, Try }
+import scala.util.{Failure, Properties, Success, Try}
 import model.Counter
 import common._
 
 /**
- * Stackable mixin trait that provides a Redis repository.
- * It requires a `sprayCounterFormat` for serialization.
- */
+  * Stackable mixin trait that provides a Redis repository.
+  * It requires a `sprayCounterFormat` for serialization.
+  */
 trait RedisRepositoryProvider {
 
   /** Serialization between Counter and JSON string provided by spray service. */
@@ -65,11 +65,11 @@ trait RedisRepositoryProvider {
     override def get(id: String) = redis.get[Counter](toKey(id))
 
     /**
-     * @return A future with the following content:
-     *         if item not found, `None`;
-     *         if update succeeded, `Some(true)`;
-     *         otherwise `Some(false)`.
-     */
+      * @return A future with the following content:
+      *         if item not found, `None`;
+      *         if update succeeded, `Some(true)`;
+      *         otherwise `Some(false)`.
+      */
     override def update(id: String, f: Counter => Int) = {
       val key = toKey(id)
       redis.watch(key) flatMap { _ =>
