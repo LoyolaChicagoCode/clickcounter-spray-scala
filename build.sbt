@@ -2,7 +2,7 @@ name := "clickcounter-spray-scala"
 
 version := "0.2"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.12"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked")
 
@@ -21,7 +21,7 @@ libraryDependencies ++= {
     "com.typesafe.akka"       %% "akka-actor"    	% akkaV,
     "org.specs2"              %% "specs2-core"   	% specs2V     % Test,
     "org.specs2"              %% "specs2-matcher-extra" % specs2V     % Test,
-    "org.slf4j"               %  "slf4j-simple"  	% "1.7.25",
+    "org.slf4j"               %  "slf4j-simple"  	% "1.7.28",
     "com.livestream"          %% "scredis"       	% "2.0.8",
     "net.databinder.dispatch" %% "dispatch-core" 	% "0.13.4"    % Test
   )
@@ -31,7 +31,7 @@ libraryDependencies ++= {
 
 Revolver.settings
 
-enablePlugins(JavaAppPackaging)
+// enablePlugins(JavaAppPackaging)
 
 coverageExcludedPackages := """.*\.Boot;.*\.ClickcounterServiceActor"""
 
