@@ -22,7 +22,7 @@ libraryDependencies ++= {
     "org.specs2"              %% "specs2-core"   	% specs2V     % Test,
     "org.specs2"              %% "specs2-matcher-extra" % specs2V     % Test,
     "org.slf4j"               %  "slf4j-simple"  	% "1.7.28",
-    "com.livestream"          %% "scredis"       	% "2.0.8",
+    "com.livestream"          %% "scredis"       	% "2.0.9.1",
     "net.databinder.dispatch" %% "dispatch-core" 	% "0.13.4"    % Test
   )
 }
