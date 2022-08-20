@@ -6,7 +6,7 @@ scalaVersion := "2.11.12"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked")
 
-resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases"
+resolvers += "Scalaz Bintray Repo" at "https://dl.bintray.com/scalaz/releases"
 
 libraryDependencies ++= {
   val akkaV      = "2.5.32"
